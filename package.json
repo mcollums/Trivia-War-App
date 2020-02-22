@@ -1,0 +1,50 @@
+{
+  "name": "project3",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Trivia War - A Multiplayer Trivia Game!",
+  "main": "server.js",
+  "scripts": {
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:prod": "node server.js",
+    "start:dev": "concurrently \"nodemon --ignore 'client/*'\" \"npm run client\"",
+    "client": "cd client && npm run start",
+    "seed": "node scripts/trivia.js && node scripts/userSeedDB.js",
+    "install": "cd client && npm install",
+    "build": "npm run build-css && npm run seed && cd client && npm run build",
+    "heroku-postbuild": "npm run build"
+  },
+  "engines": {
+    "node": "12.10.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "bcryptjs": "^2.4.3",
+    "bootstrap": "^4.4.1",
+    "chalk": "^2.4.2",
+    "dotenv": "^8.0.0",
+    "express": "^4.17.1",
+    "express-session": "^1.16.2",
+    "googleapis": "^42.0.0",
+    "html-to-text": "^5.1.1",
+    "if-env": "^1.0.4",
+    "immutability-helper": "^3.0.1",
+    "mongo": "^0.1.0",
+    "mongoose": "^5.6.7",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "path": "^0.12.7",
+    "react-bootstrap": "^1.0.0-beta.16",
+    "react-modal": "^3.9.1",
+    "react-router": "^5.0.1",
+    "socket.io": "^2.2.0",
+    "uws": "^100.0.1"
+  },
+  "devDependencies": {
+    "concurrently": "^4.1.1",
+    "nodemon": "^1.19.1"
+  }
+}

@@ -1,0 +1,49 @@
+@import './variables.scss';
+
+.auth-col {
+    font-family: $font-main;
+    padding: 20px;
+    margin-top: 80px;
+}
+
+.auth-col h3 {
+    font-family: $font-heading;
+    font-weight: 600;
+}
+
+.img-col {
+    font-family: $font-main;
+    margin-top: 20px;
+}
+
+#loginModal {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+}
+
+#registerModal {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+}
+
+.leaderboard-cont {
+    margin-top: 80px;
+    padding: 0;
+}
+
+.leaderboard-jumbo {
+    padding: 0;
+    background-color: $secondary-color;
+}
+
+.info-container {
+    margin: 100px 0;
+}
+
+.info-row {
+    padding: 0 10%;
+}

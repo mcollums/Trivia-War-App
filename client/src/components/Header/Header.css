@@ -1,0 +1,13 @@
+.header{
+    background-color: lightblue;
+    height: 100px;
+
+}
+
+.title{
+    font-size: 30px;
+    padding-top: 30px;
+    font-weight: 900;
+    font-family: cursive;
+    padding-left: 25px;
+}

@@ -1,0 +1,52 @@
+@import './variables.scss';
+
+body {
+  color: $font-main-color;
+  font-family: $font-main;
+  background-color: $white-color;
+  background-image: url('../images/background-main-01.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: bottom;
+}
+
+.leaderboard-cont {
+  margin-top: 80px;
+  padding: 0;
+  
+  .jumbotron {
+    background-color: $secondary-color;
+    padding: 0;
+  }
+}
+
+
+.footer {
+  background-color: $accent-color;
+
+  .logo {
+    font-family: $font-heading;
+    text-transform: uppercase;
+  }
+}
+
+
+
+.btn-custom-primary {
+  color: $white-color;
+  background-color: $main-color-dark;
+  border-color: $main-color-dark;
+
+  &:hover {
+    color: $white-color;
+    background-color: $main-color-light;
+    border-color: $main-color-light;
+  }
+
+  &:active {
+    color: $white-color;
+    background-color: $main-color-light !important;
+    border-color: $main-color-dark !important;
+  }
+}

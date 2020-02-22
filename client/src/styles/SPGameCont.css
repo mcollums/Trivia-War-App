@@ -1,0 +1,8 @@
+#sp-game-cont .game-col {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: flex-start;
+  overflow: auto;
+}

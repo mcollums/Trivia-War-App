@@ -1,0 +1,7 @@
+@import './variables.scss';
+
+.game-col {
+    background-color: $secondary-color;
+    border-radius: 10px;
+    min-height: 400px;
+}

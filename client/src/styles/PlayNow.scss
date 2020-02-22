@@ -1,0 +1,74 @@
+@import './variables.scss';
+
+#play-now-cont {
+    margin-bottom: 100px;
+}
+
+.play-type-card {
+    border-radius: 10%;
+    border: solid 10px;
+    width: 450px;
+    height: 400px;
+    background-color: $main-color-light;
+    border: $white-color 3px solid;  
+    position: relative;
+    transition: all .2s ease-in-out;
+
+    h1 {
+        font-weight: 900;
+        font-size: 4.5em;
+        color: $white-color;
+        width: 3em;
+        height: 3em;
+
+        .letters-container {
+            display: grid;
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin: auto;
+            top: 27px;
+            bottom: 0;
+            height: 2em;
+            text-align: center;
+        }
+    
+        .letters {
+            position: relative;
+            z-index: 2;
+            line-height: 0.7em;
+            right: -.05em;
+            top: -.2em;
+          }
+    
+        .circle {
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin: auto;
+            top: 0;
+            bottom: 0;
+        }
+    
+        .circle-white {
+            width: 5em;
+            height: 5em;
+            border: 2px dashed white;
+            border-radius: 2em;
+          }
+    
+          .circle-dark {
+            width: 4.2em;
+            height: 4.2em;
+            background-color: $main-color-darkest;
+            border-radius: 3em;
+            z-index: 1;
+            display: flex;
+            justify-content: center;
+          }
+    }
+
+    &:hover {
+        transform: scale(1.04);
+      }
+}
