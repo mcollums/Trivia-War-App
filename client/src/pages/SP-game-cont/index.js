@@ -3,10 +3,7 @@ import API from "../../utils/API";
 import GameCard from "../../components/GameCard";
 import thumbsup from "../../images/thumpsup.jpg";
 import thumbsdown from "../../images/thumpsdown.png"
-import GameCol from "../../components/GameCol";
-import { Container, Row, Col, Jumbotron } from 'react-bootstrap';
-
-// import Jumbotron from "../../components/Jumbotron";
+import { Container, Row, Col, Button} from 'react-bootstrap';
 import { Redirect } from "react-router-dom";
 import '../../styles/SPGameCont.scss';
 
@@ -297,7 +294,7 @@ class SinglePlayerGameContainer extends Component {
       return (
             <Container id="sp-game-cont" fluid="true">
                <Row>
-                  <Col className="game-col p-5 mt-4" md={{ span: 8, offset: 2 }} style={{ textAlign: "center" }}>
+                  <Col className="game-col p-5 mt-5" md={{ span: 8, offset: 2 }} style={{ textAlign: "center" }}>
                         { this.state.click && !this.state.outcome
                               ?
                               (
@@ -359,25 +356,12 @@ class SinglePlayerGameContainer extends Component {
                   </Col>
                </Row>
 
-               <Row className="my-5">
-                  <Col className="justify-content-center" md={{ span: 2, offset: 4 }} >
-                     <img 
-                        style={{ 
-                           width: "100px", 
-                           height: "100px", 
-                           borderRadius: "50%" }} 
-                        alt={`Correct Score is ${this.state.correct}`} 
-                        src={thumbsup} />
-                     <h5> Correct {this.state.correct}</h5>
+               <Row className="my-5 justify-content-md-center">
+                  <Col md="auto" style={{ marginRight: "200px" }}>
+                     <h3> Correct: {this.state.correct}</h3>
                   </Col>
-                  <Col className="justify-content-center" md={{ span: 2, offset: 1 }} >
-                     <img style={{ 
-                        width: "100px", 
-                        height: "100px", 
-                        borderRadius: "50%" }} 
-                        alt={`Incorrect Score is ${this.state.incorrect}`} 
-                        src={thumbsdown} />
-                     <h5>Incorrect {this.state.incorrect}</h5>
+                  <Col md="auto" >
+                     <h3>Incorrect: {this.state.incorrect}</h3>
                   </Col>
                </Row>
             </Container>
