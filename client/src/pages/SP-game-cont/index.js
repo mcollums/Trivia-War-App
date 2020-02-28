@@ -51,7 +51,7 @@ class SinglePlayerGameContainer extends Component {
       //    this.setState({ showLoading: false });
       // }, 500);
 
-      // this.timerID = setInterval(() => this.decrimentTime(), 1000);
+      this.timerID = setInterval(() => this.decrimentTime(), 1000);
 
       this.getGame(this.props.id);
       this.getUserPic();
@@ -303,10 +303,11 @@ class SinglePlayerGameContainer extends Component {
                                     <Row className="mt-5">
                                        <Col>
                                           <h2>You are Correct!</h2>
-                                          <button className="mt-5 btn btn-custom-primary" 
+                                          <Button variant="info"
+                                                className="mt-5 btn btn-custom-primary" 
                                                 onClick={this.checkforNextQuestion}>
-                                                   Next Question
-                                          </button>
+                                                Next Question
+                                          </Button>
                                        </Col>
                                     </Row>
                                     :
@@ -314,10 +315,11 @@ class SinglePlayerGameContainer extends Component {
                                     <Row className="mt-5">
                                        <Col>
                                        <h2>Incorrect. Keep Trying!</h2>
-                                       <button className="mt-5 btn btn-custom-primary" 
-                                               onClick={this.checkforNextQuestion}>
+                                       <Button  variant="info"
+                                                className="mt-5 btn btn-custom-primary" 
+                                                onClick={this.checkforNextQuestion}>
                                                 Next Question 
-                                       </button>
+                                       </Button>
                                        </Col>
                                     </Row>
                               )
@@ -344,10 +346,11 @@ class SinglePlayerGameContainer extends Component {
                                        <Row>
                                           <Col>
                                              <h5><strong>{"Game Over"}</strong></h5>
-                                             <button className="btn btn-custom-primary" 
-                                                   onClick={() => this.handlePlayAgainBtn(this.state.userInfo)}>
+                                             <Button variant="info"
+                                                      className="mt-5 btn btn-custom-primary" 
+                                                      onClick={() => this.handlePlayAgainBtn(this.state.userInfo)}>
                                                       Play Again
-                                             </button>
+                                             </Button>
                                           </Col>
                                        </Row>
                                     )
