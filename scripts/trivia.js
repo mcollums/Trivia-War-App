@@ -3,23 +3,21 @@ const mongoose = require("mongoose");
 const db = require("../models");
 const htmlToText = require("html-to-text");
 
-// const text = htmlToText.fromString(originText);
-
 
 mongoose.connect(
     process.env.MONGODB_URI ||
     "mongodb://localhost/trivia_masters"
 );
 
-makeArr = (data, callback) => {
+makeArr = (data) => {
     let string = htmlToText.fromString(data);
     let answersObject = string.split(',');
 
     console.log("DATA FROM MAKEARR "+ answersObject);
     console.log("IS ARRAY? " + Array.isArray(answersObject));
     return {answersObject};
-    // callback(newArr);
 }
+
 imageArr = [
     "https://biox.stanford.edu/sites/g/files/sbiybj7941/f/creativity_banner.png",
     "https://blog.oup.com/wp-content/uploads/2016/02/1260-music.jpg",
@@ -41,14 +39,9 @@ runSeeds = (i) => {
     console.log("we running stuff");
 
     // We then run the request with axios module on a URL with a JSON
-    axios.get("https://opentdb.com/api.php?amount=10&category=" + categoriesArray[i] + "&type=multiple").then(
-        function (response) {
-            // Then we print out the trivia api data
-            console.log("we got stuff")
-            // console.log("Response from Trivia API: " + JSON.stringify(response.data.results));
+    axios.get("https://opentdb.com/api.php?amount=10&category=" + categoriesArray[i] + "&type=multiple")
+    .then((response) => {
             let results = response.data.results;
-            // console.log(results[0].category);
-
             triviaSeed.push(
                 {
                     image: imageArr[i],
@@ -114,7 +107,7 @@ runSeeds = (i) => {
                 db.Game
                     .collection.insertMany(triviaSeed)
                     .then(data => {
-                        console.log(data.result.n + " records inserted!");
+                        console.log(data.result.n + " trivia games inserted!");
                         process.exit(0);
                     })
                     .catch(err => {
