@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
 import GameCard from "../../components/GameCard";
-import thumbsup from "../../images/thumpsup.jpg";
-import thumbsdown from "../../images/thumpsdown.png"
 import { Container, Row, Col, Button} from 'react-bootstrap';
 import { Redirect } from "react-router-dom";
 import '../../styles/SPGameCont.scss';
