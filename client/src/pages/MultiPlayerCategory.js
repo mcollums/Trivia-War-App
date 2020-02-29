@@ -1,3 +1,4 @@
+import '../styles/MultiCategory.scss'
 import React, { Component } from "react";
 import { Redirect, withRouter } from "react-router-dom";
 import socketAPI from "../utils/socketAPI";

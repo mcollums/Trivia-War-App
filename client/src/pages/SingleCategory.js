@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import '../styles/Authentication.scss'
+// import '../styles/Authentication.scss'
 import { Container, Row } from 'react-bootstrap';
 import API from "../utils/API";
 import SPGameCard from "../components/SPGameCard";

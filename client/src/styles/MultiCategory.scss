@@ -1,0 +1,49 @@
+@import './variables.scss';
+
+
+// Style for matchmaking animation
+  .circlecontainer {
+      width: 300px;
+      height: 50vh;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 150px;
+      display: flex;
+      justify-content: center;
+
+      .lds-circle {
+        transform: translateZ(1px); 
+
+        div {
+          width: 200px;
+          height: 200px;
+          border-radius: 50%;
+          background: $main-color-light;
+          
+          animation: lds-circle 2.4s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+        }
+      }
+
+      .match {
+        color: $main-color-darkest;
+        margin-top: 20px;
+        text-align: center;
+      }
+  }
+
+  @keyframes lds-circle {
+    0%, 100% {
+      animation-timing-function: cubic-bezier(0.5, 0, 1, 0.5);
+    }
+    0% {
+      transform: rotateY(0deg);
+    }
+    50% {
+      transform: rotateY(1800deg);
+      animation-timing-function: cubic-bezier(0, 0.5, 0.5, 1);
+    }
+    100% {
+      transform: rotateY(3600deg);
+    }
+  }
+
