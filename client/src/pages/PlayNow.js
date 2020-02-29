@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Redirect, withRouter } from "react-router-dom";
-import { Container, Row, Col, Button, Jumbotron } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 
 import '../styles/PlayNow.scss'
 import API from "../utils/API.js"

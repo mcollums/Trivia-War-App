@@ -261,7 +261,7 @@ class Authentication extends Component {
                         <Col md="auto" />
                         <Col className="img-col" md="6">
                             <img className="w-100" src={mainImg} alt="Girl standing next to circular-shaped images on her friends" />
-                            <p className="mt-3 ml-5">"Get ready to compete with friends for ultimate trivia bragging rights!</p>
+                            <p className="mt-3 ml-5">Get ready to compete with friends for ultimate trivia bragging rights!</p>
                         </Col>
                     </Row>
                 </Container>

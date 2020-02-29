@@ -91,13 +91,13 @@ class UserHome extends Component {
                         <Col id="user-col">
                             <h2>Welcome, {this.state.userInfoFromDB.username}!</h2>
                             <Row id="user-info-row" className="d-flex justify-content-around">
-                                <Col md="4">
+                                <Col md="6">
                                     <img
-                                        alt={"user's profile image"}
+                                        alt={`${this.state.userInfo.username}'s profile`}
                                         src={this.state.userInfoFromDB.picLink} />
                                 </Col>
                                 <Col md="4">
-                                    <h5><strong>Name: </strong> {this.state.userInfoFromDB.username}</h5>
+                                    <h5><strong>Name:</strong> {this.state.userInfoFromDB.username}</h5>
                                     <h5><strong>Wins:</strong> {this.state.userInfoFromDB.totalWins}</h5>
                                     <h5><strong>Losses:</strong> {this.state.userInfoFromDB.totalLosses}</h5>
                                     <h5><strong>Ranking:</strong> {this.state.ranking}</h5>
@@ -109,7 +109,7 @@ class UserHome extends Component {
                                 </Col>
                             </Row>
                         </Col>
-                        <Col id="mess-col">
+                        <Col md="4" id="mess-col">
                             {/* TODO: Add route that gets most recent message from the user to the database */}
                             <h2>Messages: </h2>
                             <p>
