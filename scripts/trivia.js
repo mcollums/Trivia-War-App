@@ -102,10 +102,11 @@ runSeeds = (i) => {
             );
 
             i++;
+            console.log(`Value of i = ${i}`);
             if (i === categoriesArray.length) {
-                console.log("we're done")
                 db.Game
-                    .collection.insertMany(triviaSeed)
+                    .remove({})
+                    .then(() => db.Game.collection.insertMany(triviaSeed))
                     .then(data => {
                         console.log(data.result.n + " trivia games inserted!");
                         process.exit(0);
@@ -116,7 +117,6 @@ runSeeds = (i) => {
                     });
             }
             else {
-                console.log("running this again")
                 runSeeds(i);
             }
         }
