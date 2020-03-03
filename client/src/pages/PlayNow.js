@@ -24,11 +24,13 @@ class PlayNow extends Component {
 
     handleSinglePlay = () => {
         let path = "/single";
+        this.setState({redirectTo: "/single"})
         this.props.history.push(path);
     }
 
     handleMultiPlay = () => {
         let path = "/multi";
+        this.setState({redirectTo: "/multi"})
         this.props.history.push(path);
     }
 
