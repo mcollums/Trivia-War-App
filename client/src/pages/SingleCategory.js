@@ -55,4 +55,4 @@ class SingleCategory extends Component {
 }
 
 
-export default SingleCategory;
+ 
