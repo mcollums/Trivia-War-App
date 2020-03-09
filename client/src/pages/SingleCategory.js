@@ -9,7 +9,7 @@ import SPGameContainer from './SP-game-cont';
 class SingleCategory extends Component {
     state = {
         cat: [],
-        id: "5d51e88288f77f973b8e7908"
+        id: "5e5acda1c4cd63343ba04f06"
     };
 
     componentDidMount() {
@@ -54,5 +54,6 @@ class SingleCategory extends Component {
 
 }
 
+export default SingleCategory
 
  

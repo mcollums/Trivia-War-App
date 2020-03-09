@@ -11,7 +11,7 @@ import Authentication from "./pages/Authentication";
 import UserHome from "./pages/UserHome";
 import MultiPlayerCat from "./pages/MultiPlayerCategory";
 import GameContainer from "./pages/GameContainer";
-import SingleGameContainer from "./pages/SP-game-cont";
+import SingleGameContainer from "./pages/SPGameContainer";
 import NoMatch from "./pages/NoMatch";
 import SingleCategory from "./pages/SingleCategory";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
