@@ -1,5 +1,6 @@
 const axios = require('axios');
 const mongoose = require("mongoose");
+// const fs = require('fs');
 const db = require("../models");
 const htmlToText = require("html-to-text");
 
@@ -17,6 +18,8 @@ makeArr = (data) => {
     console.log("IS ARRAY? " + Array.isArray(answersObject));
     return {answersObject};
 }
+
+// imgPath = ''
 
 imageArr = [
     "https://biox.stanford.edu/sites/g/files/sbiybj7941/f/creativity_banner.png",
@@ -45,7 +48,7 @@ runSeeds = (i) => {
             triviaSeed.push(
                 {
                     image: imageArr[i],
-                    category: results[0].category,
+                    category: results[0].category.toLowerCase().trim(),
                     questions: [
                         {
                             "question": htmlToText.fromString(results[0].question),

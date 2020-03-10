@@ -50,7 +50,7 @@ class SinglePlayerGameContainer extends Component {
 
       this.timerID = setInterval(() => this.decrimentTime(), 1000);
 
-      this.getOneGame(this.props.id);
+      this.getGame(this.props.id);
       // this.getUserPic();
 
       // console.log(this.state.userInfo);
