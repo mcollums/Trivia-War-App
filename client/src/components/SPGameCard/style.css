@@ -4,7 +4,7 @@
   margin: 10px 20px;
   border-radius: 5px;
   transition: all 0.2s ease-in;
-  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 3px 2px 0 rgba(0, 0, 0, 0.2), 0 4px 3px 0 rgba(0, 0, 0, 0.19);
 }
 .card.scategory:hover {
   transform: scale(1.02);
@@ -13,8 +13,8 @@
 }
 .card.scategory:active {
   transform: scale(1);
-  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.102),
-    0 6px 10px 0 rgba(0, 0, 0, 0.109);
+  box-shadow: 0 4px 3px 0 rgba(0, 0, 0, 0.102),
+    0 5px 4px 0 rgba(0, 0, 0, 0.109);
 }
 .card.scategory img {
   width: 100%;

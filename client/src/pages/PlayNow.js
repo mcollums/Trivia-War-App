@@ -11,7 +11,6 @@ class PlayNow extends Component {
     };
 
     componentDidMount() {
-
         API.checkAuth()
             .then(response => {
                 // this runs if the user is logged in
@@ -24,11 +23,13 @@ class PlayNow extends Component {
 
     handleSinglePlay = () => {
         let path = "/single";
+        // this.setState({redirectTo: "/single"})
         this.props.history.push(path);
     }
 
     handleMultiPlay = () => {
         let path = "/multi";
+        // this.setState({redirectTo: "/multi"})
         this.props.history.push(path);
     }
 

@@ -1,5 +1,6 @@
 const axios = require('axios');
 const mongoose = require("mongoose");
+const fs = require('fs');
 const db = require("../models");
 const htmlToText = require("html-to-text");
 
@@ -18,7 +19,9 @@ makeArr = (data) => {
     return {answersObject};
 }
 
-imageArr = [
+// let imgPath = '../client/src/images/animals.png'
+
+let imageArr = [
     "https://biox.stanford.edu/sites/g/files/sbiybj7941/f/creativity_banner.png",
     "https://blog.oup.com/wp-content/uploads/2016/02/1260-music.jpg",
     "https://images-na.ssl-images-amazon.com/images/I/A1ewqwDYPdL._SL1500_.jpg",
@@ -45,7 +48,11 @@ runSeeds = (i) => {
             triviaSeed.push(
                 {
                     image: imageArr[i],
-                    category: results[0].category,
+                    // image: {
+                    //     data: fs.readFileSync(imgPath),
+                    //     contentType: 'image/png'
+                    // },
+                    category: results[0].category.toLowerCase().trim(),
                     questions: [
                         {
                             "question": htmlToText.fromString(results[0].question),

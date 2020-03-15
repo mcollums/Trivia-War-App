@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import API from "../utils/API";
 import MPGameCard from "../components/MPGameCard";
-import GameCol from "../components//GameCol";
+import GameCol from "../components/GameCol";
 import { Col, Row, Container } from "../components/Grid";
 import Jumbotron from "../components/Jumbotron";
 import socketAPI from "../utils/socketAPI";

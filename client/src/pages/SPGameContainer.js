@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import API from "../../utils/API";
-import GameCard from "../../components/GameCard";
+import API from "../utils/API";
+import GameCard from "../components/GameCard";
 import { Container, Row, Col, Button} from 'react-bootstrap';
 import { Redirect } from "react-router-dom";
-import '../../styles/SPGameCont.scss';
+import '../styles/SPGameCont.scss';
 
 let quizQuestions = [];
 let nextIndex = 0;
@@ -31,7 +31,6 @@ class SinglePlayerGameContainer extends Component {
       counter: false,
       play: false,
       pause: true,
-
    };
 
    play = () => {
@@ -44,7 +43,7 @@ class SinglePlayerGameContainer extends Component {
 
 
    componentDidMount() {
-
+      console.log("PROPS.ID" + this.props.id);
       // setTimeout(() => {
       //    this.setState({ showLoading: false });
       // }, 500);
@@ -52,7 +51,7 @@ class SinglePlayerGameContainer extends Component {
       this.timerID = setInterval(() => this.decrimentTime(), 1000);
 
       this.getGame(this.props.id);
-      this.getUserPic();
+      // this.getUserPic();
 
       // console.log(this.state.userInfo);
    }
@@ -106,7 +105,7 @@ class SinglePlayerGameContainer extends Component {
 
    // Setting the state of the game
    setQuestionState(data) {
-      // console.log("DATA " + JSON.stringify(data));
+      console.log("DATA " + JSON.stringify(data));
       let index = this.state.index;
       let allAnswers = data.questions[index].answers.answersObject;
       //push correct answer to the array
