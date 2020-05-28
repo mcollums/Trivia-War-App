@@ -2,6 +2,7 @@ import '../styles/MultiCategory.scss'
 import React, { Component } from "react";
 import { Redirect, withRouter } from "react-router-dom";
 import socketAPI from "../utils/socketAPI";
+import { Container, Row, Col } from 'react-bootstrap';
 import API from "../utils/API";
 import MPCategory from "../components/MPCategory";
 
@@ -36,10 +37,15 @@ class MultiPlayer extends Component {
         //Listens for the gameStart information from the server
         //this will happen when two users have joined the session
         socketAPI.subscribeGameStart((info) => {
-            this.setState({ 
-                matchmakingOpen: false 
+            this.setState({
+                matchmakingOpen: false
             }, () => this.props.history.push('/game'));
         });
+    }
+
+    //Click handler for the game id
+    handleCatSelect = (id) => {
+        this.publishSeekGame(id);
     }
 
     //called by handleCatSelect and sernds info to server
@@ -47,10 +53,7 @@ class MultiPlayer extends Component {
         socketAPI.publishSeekGame(category);
     }
 
-    //Click handler for the game id
-    handleCatSelect = (id) => {
-        this.publishSeekGame(id);
-    }
+
 
     render() {
         if (this.state.matchmakingOpen) {
@@ -66,17 +69,19 @@ class MultiPlayer extends Component {
         }
         return (
             <div>
-                <div className="scatContain">
-                    {this.state.category.map(category => (
-                        <MPCategory
-                            id={category._id}
-                            key={category._id}
-                            category={category.category}
-                            image={category.image}
-                            handleSelect={this.handleCatSelect}
-                        />
-                    ))}
-                </div>
+                <Container className="scatContain">
+                    <Row>
+                        {this.state.category.map(category => (
+                            <MPCategory
+                                id={category._id}
+                                key={category._id}
+                                category={category.category}
+                                image={category.image}
+                                handleSelect={this.handleCatSelect}
+                            />
+                        ))}
+                    </Row>
+                </Container>
             </div>
         )
     };
