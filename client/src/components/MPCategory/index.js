@@ -1,19 +1,22 @@
 import React from "react";
+import { Card } from 'react-bootstrap';
+import './style.scss';
+
 
 const styles = {
-    marginTop: "30px"
+    // marginTop: "30px",
+    // width: "18rem"
+
 }
 
 const MPCategory = props => (
-    <div>
-        <div style={styles} id={props.id} className="scategory" onClick={() => props.handleSelect(props.id)}>
-            <div>
-                <img className="catImage" src={props.image} alt={props.id} />
-            </div>
-            <div className="scatcat">
-                <strong>{props.category}</strong>
-            </div>
-        </div>
-    </div >
+    <Card id={props.id}
+        className="scategory"
+        onClick={() => props.handleSelect(props.id)}>
+        <Card.Img variant="top" src={props.image} />
+        <Card.Body>
+            <Card.Title>{props.category}</Card.Title>
+        </Card.Body>
+    </Card>
 );
 export default MPCategory;

@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const routes = require("./routes");
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3003;
 const passport = require('./config/passport.js')
 // const { google } = require("googleapis")
 const session = require('express-session')
@@ -16,7 +16,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-let server = require('http').Server(app);
+let server = require('http').createServer(app);
 let io = require('socket.io')(server);
 
 //OAuth
@@ -96,8 +96,7 @@ const makeSession = (id, creator, categoryId) => {
 
 
 io.on('connection', function (player) {
-
-  //Clears the internal
+  //Clears the internal timer's intervat
   const makeClearInterval = (countdown) => {
     return () => {
       clearInterval(countdown)
@@ -118,6 +117,7 @@ io.on('connection', function (player) {
 
       s.playerOne.socket.emit('timerDec', timer);
       s.playerTwo.socket.emit('timerDec', timer);
+      console.log(timer);
 
       if (--timer < 0) {
         timer = duration;

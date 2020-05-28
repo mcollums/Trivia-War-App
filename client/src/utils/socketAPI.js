@@ -1,6 +1,6 @@
 import openSocket from 'socket.io-client';
 
-const socket = openSocket(process.env.REACT_APP_SOCKET_URL  || 'http://localhost:3001')
+const socket = openSocket(process.env.REACT_APP_SOCKET_URL  || 'http://localhost:3003')
 
 //As soon as a user connects, add them to the UsersArray
 socket.on("message", message => console.log(message));

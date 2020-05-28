@@ -49,7 +49,7 @@ class GameContainer extends Component {
                 this.setState({ userInfo: response.data }, () => {
                     setTimeout(() => {
                         socketAPI.publishGCMount();
-                    }, 500);
+                    });
                 });
                 //Grab the session info from the server
                 //Then set the state with the session info

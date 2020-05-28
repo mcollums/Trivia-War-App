@@ -16,7 +16,7 @@ export default {
     return axios.get("/user/me");
   },
   getUsers: function () {
-    return axios.get("/api/user")
+    return axios.get("/api/user");
   },
   getOneUser: function (id) {
     return axios.get("/api/user/" + id);

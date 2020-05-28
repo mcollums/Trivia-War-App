@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import API from "../utils/API";
 import GameCard from "../components/GameCard";
-import { Container, Row, Col, Button} from 'react-bootstrap';
+import { Container, Row, Col, Button } from 'react-bootstrap';
 import { Redirect } from "react-router-dom";
 import '../styles/SPGameCont.scss';
 
@@ -12,6 +12,7 @@ let newIndex = 0;
 class SinglePlayerGameContainer extends Component {
 
    state = {
+      gameId: "",
       title: "",
       category: "",
       question: "",
@@ -29,21 +30,26 @@ class SinglePlayerGameContainer extends Component {
       redirectTo: null,
       click: false,
       counter: false,
-      play: false,
-      pause: true,
+      // play: false,
+      // pause: true,
    };
 
-   play = () => {
-      this.setState({ play: true, pause: false })
-   }
+   // play = () => {
+   //    this.setState({ play: true, pause: false })
+   // }
 
-   pause = () => {
-      this.setState({ play: false, pause: true })
-   }
+   // pause = () => {
+   //    this.setState({ play: false, pause: true })
+   // }
 
 
    componentDidMount() {
       console.log("PROPS.ID" + this.props.id);
+      this.setState({
+         gameId: this.props.id
+      }, () => {
+         console.log(`this state's game Id = ${this.state.gameId}`);
+      })
       // setTimeout(() => {
       //    this.setState({ showLoading: false });
       // }, 500);
@@ -51,9 +57,6 @@ class SinglePlayerGameContainer extends Component {
       this.timerID = setInterval(() => this.decrimentTime(), 1000);
 
       this.getGame(this.props.id);
-      // this.getUserPic();
-
-      // console.log(this.state.userInfo);
    }
 
    getUserPic = () => {
@@ -105,7 +108,7 @@ class SinglePlayerGameContainer extends Component {
 
    // Setting the state of the game
    setQuestionState(data) {
-      console.log("DATA " + JSON.stringify(data));
+      // console.log("DATA " + JSON.stringify(data)); 
       let index = this.state.index;
       let allAnswers = data.questions[index].answers.answersObject;
       //push correct answer to the array
@@ -120,7 +123,7 @@ class SinglePlayerGameContainer extends Component {
          answers: shuffledArr,
          correctAnswer: data.questions[index].correctAnswer,
          questionCount: data.questions.length
-      }, () => { this.play() });
+      });
    }
 
    // This function decreases the time limit of the game 
@@ -137,12 +140,11 @@ class SinglePlayerGameContainer extends Component {
       }
    }
 
-   //This method updates the game state basked on what the user clicked.
+   //This method updates the game state based on what the user clicked.
    handleSelection = id => {
+      console.log("handleSelection id " + id);
       //Stop timer and audio
       this.stopTimer();
-      this.pause();
-      // console.log(id);
 
       //update state with user selection
       this.setState({
@@ -201,14 +203,13 @@ class SinglePlayerGameContainer extends Component {
 
    nextQuestion = () => {
       //This variable is checking to see what the next index value will be
-      this.stopTimer();
-      this.pause();
+      // this.stopTimer();
       nextIndex = (this.state.index + 1);
 
       //if the next index value is equal to the total amount of questions then stop the game
       //otherwise, keep going
       if (nextIndex === this.state.questionCount) {
-         this.stopTimer();
+         // this.stopTimer();
          this.endGame();
       } else {
          this.setNextQuestion();
@@ -218,23 +219,33 @@ class SinglePlayerGameContainer extends Component {
    // button for Play again, updates the users scores and returns to the home page.
    // first checking the database, then pulling the userinfo and updating the wins based what is the current wins.
    handlePlayAgainBtn = (user) => {
-      this.stopTimer();
-      if (this.state.userInfo.id === user.id) {
-         if (this.state.correct >= 7) {
-            API.addWin(user.id).then(() => this.setState({ redirectTo: "/home" }));
-         }
-         else {
-            API.addLoss(user.id).then(() => this.setState({ redirectTo: "/home" }));
-         }
-      }
+      console.log("Play AGAIN")
+      this.setState({
+         outcome: false,
+         index: 0
+      }, () => {
+         this.stopTimer();
+         this.getGame(this.state.gameId);
+
+         this.timerID = setInterval(() => this.decrimentTime(), 1000);
+
+      })
+
+      // if (this.state.userInfo.id === user.id) {
+      //    if (this.state.correct >= 7) {
+      //       API.addWin(user.id).then(() => this.setState({ redirectTo: "/home" }));
+      //    }
+      //    else {
+      //       API.addLoss(user.id).then(() => this.setState({ redirectTo: "/home" }));
+      //    }
+      // }
    }
 
 
 
    checkforNextQuestion = () => {
-      //start timer and sound
+      //start timer
       this.timerID = setInterval(() => this.decrimentTime(), 1000);
-      this.play();
 
       //grab next index
       newIndex = this.state.index + 1;
@@ -243,7 +254,7 @@ class SinglePlayerGameContainer extends Component {
       } else {
          this.setState({
             outcome: true
-         }, () => { this.pause() })
+         })
       }
    }
 
@@ -267,7 +278,6 @@ class SinglePlayerGameContainer extends Component {
 
    endGame = () => {
       this.stopTimer();
-      this.pause();
    }
 
 
@@ -289,82 +299,82 @@ class SinglePlayerGameContainer extends Component {
       }
 
       return (
-            <Container id="sp-game-cont" fluid="true">
-               <Row>
-                  <Col className="game-col p-5 mt-5" md={{ span: 8, offset: 2 }} style={{ textAlign: "center" }}>
-                        { this.state.click && !this.state.outcome
-                              ?
-                              (
-                                 this.state.counter
-                                    ?
-                                    <Row className="mt-5">
-                                       <Col>
-                                          <h2>You are Correct!</h2>
-                                          <Button variant="info"
-                                                className="mt-5 btn btn-custom-primary" 
-                                                onClick={this.checkforNextQuestion}>
-                                                Next Question
+         <Container id="sp-game-cont" fluid="true">
+            <Row>
+               <Col className="game-col p-5 mt-5" md={{ span: 8, offset: 2 }} style={{ textAlign: "center" }}>
+                  {this.state.click && !this.state.outcome
+                     ?
+                     (
+                        this.state.counter
+                           ?
+                           <Row className="mt-5">
+                              <Col>
+                                 <h2>You are Correct!</h2>
+                                 <Button variant="info"
+                                    className="mt-5 btn btn-custom-primary"
+                                    onClick={this.checkforNextQuestion}>
+                                    Next Question
                                           </Button>
-                                       </Col>
-                                    </Row>
-                                    :
+                              </Col>
+                           </Row>
+                           :
 
-                                    <Row className="mt-5">
-                                       <Col>
-                                       <h2>Incorrect. Keep Trying!</h2>
-                                       <Button  variant="info"
-                                                className="mt-5 btn btn-custom-primary" 
-                                                onClick={this.checkforNextQuestion}>
-                                                Next Question 
+                           <Row className="mt-5">
+                              <Col>
+                                 <h2>Incorrect. Keep Trying!</h2>
+                                 <Button variant="info"
+                                    className="mt-5 btn btn-custom-primary"
+                                    onClick={this.checkforNextQuestion}>
+                                    Next Question
                                        </Button>
-                                       </Col>
-                                    </Row>
-                              )
-                              :
-                              (
-                                 !this.state.outcome
-                                    ? (
-                                       <>
-                                          <h2>{this.state.question}</h2>
-                                          <h4>Time Remaining: <strong>{this.state.timer}s </strong> left</h4>
-                                       <Row className="d-flex justify-content-center">
-                                             {this.state.answers.map(answer => (
-                                                <GameCard
-                                                   id={answer}
-                                                   key={answer}
-                                                   answer={answer}
-                                                   correctAnswer={this.state.correctAnswer}
-                                                   handleSelection={this.handleSelection}
-                                                />
-                                             ))}
-                                       </Row>
-                                       </>
-                                    ) : (
-                                       <Row>
-                                          <Col>
-                                             <h5><strong>{"Game Over"}</strong></h5>
-                                             <Button variant="info"
-                                                      className="mt-5 btn btn-custom-primary" 
-                                                      onClick={() => this.handlePlayAgainBtn(this.state.userInfo)}>
-                                                      Play Again
+                              </Col>
+                           </Row>
+                     )
+                     :
+                     (
+                        !this.state.outcome
+                           ? (
+                              <>
+                                 <h2>{this.state.question}</h2>
+                                 <h4>Time Remaining: <strong>{this.state.timer}s </strong> left</h4>
+                                 <Row className="d-flex justify-content-center">
+                                    {this.state.answers.map(answer => (
+                                       <GameCard
+                                          id={answer}
+                                          key={answer}
+                                          answer={answer}
+                                          correctAnswer={this.state.correctAnswer}
+                                          handleSelection={this.handleSelection}
+                                       />
+                                    ))}
+                                 </Row>
+                              </>
+                           ) : (
+                              <Row>
+                                 <Col>
+                                    <h5><strong>{"Game Over"}</strong></h5>
+                                    <Button variant="info"
+                                       className="mt-5 btn btn-custom-primary"
+                                       onClick={() => this.handlePlayAgainBtn()}>
+                                       Play Again
                                              </Button>
-                                          </Col>
-                                       </Row>
-                                    )
-                              )
-                        }
-                  </Col>
-               </Row>
+                                 </Col>
+                              </Row>
+                           )
+                     )
+                  }
+               </Col>
+            </Row>
 
-               <Row className="my-5 justify-content-md-center">
-                  <Col md="auto" style={{ marginRight: "200px" }}>
-                     <h3> Correct: {this.state.correct}</h3>
-                  </Col>
-                  <Col md="auto" >
-                     <h3>Incorrect: {this.state.incorrect}</h3>
-                  </Col>
-               </Row>
-            </Container>
+            <Row className="my-5 justify-content-md-center">
+               <Col md="auto" style={{ marginRight: "200px" }}>
+                  <h3> Correct: {this.state.correct}</h3>
+               </Col>
+               <Col md="auto" >
+                  <h3>Incorrect: {this.state.incorrect}</h3>
+               </Col>
+            </Row>
+         </Container>
       )
    }
 
